@@ -1,0 +1,35 @@
+CREATE DATABASE musica;
+
+USE musica;
+
+CREATE TABLE Usuario (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(128),
+    contrasena VARCHAR(128)
+);
+
+CREATE TABLE Album (
+    id INT PRIMARY KEY,
+    titulo VARCHAR(128),
+    anio INT,
+    descripcion VARCHAR(512),
+    usuario INT,
+    FOREIGN KEY (usuario) REFERENCES Usuario(id)
+);
+
+CREATE TABLE Cancion (
+    id INT PRIMARY KEY,
+    titulo VARCHAR(128),
+    minutos INT,
+    segundos INT,
+    interprete VARCHAR(128)
+);
+
+CREATE TABLE Album_Cancion (
+    album_id INT,
+    cancion_id INT,
+    PRIMARY KEY (album_id, cancion_id),
+    FOREIGN KEY (album_id) REFERENCES Album(id),
+    FOREIGN KEY (cancion_id) REFERENCES Cancion(id)
+);
+
